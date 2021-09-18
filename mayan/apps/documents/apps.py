@@ -82,7 +82,7 @@ from .links.document_links import (
     link_document_type_change, link_document_properties_edit,
     link_document_list, link_document_recently_accessed_list,
     link_document_recently_created_list, link_document_multiple_type_change,
-    link_document_preview, link_document_properties
+    link_document_preview, link_document_review, link_document_properties
 )
 from .links.document_file_links import (
     link_document_file_delete, link_document_file_delete_multiple,
@@ -711,7 +711,7 @@ class DocumentsApp(MayanAppConfig):
             links=(link_acl_list,), sources=(Document,)
         )
         menu_facet.bind_links(
-            links=(link_document_preview,), sources=(Document,), position=0
+            links=(link_document_preview, link_document_review), sources=(Document,), position=0
         )
         menu_facet.bind_links(
             links=(link_document_properties,), sources=(Document,), position=2
