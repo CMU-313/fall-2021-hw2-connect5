@@ -15,6 +15,10 @@ body {
     padding-top: 60px;
 }
 
+a {
+  color: #0b5a4b;
+}
+
 .navbar-brand {
     font-family: "IM Fell English SC", serif;
 }
@@ -404,6 +408,10 @@ a i {
 .btn-warning.btn-outline:hover,
 .btn-danger.btn-outline:hover {
     color: #fff;
+}
+
+.btn-default {
+  color: #161616;
 }
 
 .btn-list > .btn {
