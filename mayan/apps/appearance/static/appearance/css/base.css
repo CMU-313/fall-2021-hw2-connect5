@@ -394,7 +394,11 @@ a i {
 }
 
 .btn-danger.btn-outline {
-    color: #d9534f;
+  color: #a71d31;
+}
+
+.btn-danger {
+background-color: #a71d31;
 }
 
 .btn-default.btn-outline:hover,
@@ -648,4 +652,8 @@ a i {
     padding-top: 0px;
     padding-left: 0px;
     padding-right: 0px;
+}
+
+.table-striped a {
+  color: #0244A1;
 }
