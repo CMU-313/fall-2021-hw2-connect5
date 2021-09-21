@@ -38,7 +38,7 @@
                             {% ifequal page page_obj.number %}
                                 <a class="active btn btn-default btn-sm pagination-disabled" href="#">{{ page }}</a>
                             {% else %}
-                                <a class="btn btn-default btn-sm" href="?{{ page.querystring }}">{{ page }}</a>
+                                <a class="btn btn-default btn-sm" href="?{{ page.querystring }}" style="color: #0d151a;">{{ page }}</a>
                             {% endifequal %}
                         {% else %}
                             <a class="btn btn-default btn-sm disabled" href="#">...</a>
