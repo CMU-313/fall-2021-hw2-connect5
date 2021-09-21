@@ -17,8 +17,8 @@ jobs:
       - name: Setup environment
         run: |
           set -a && . ./config.env && set +a
-          apt -qq update
-          apt install -qq make python3-venv python3-dev
+          sudo apt-get -qq update
+          sudo apt-get install -qq make python3-venv python3-dev
           python3 -m venv venv
           . venv/bin/activate
           pip install pip
@@ -34,9 +34,9 @@ jobs:
           set -a && . ./config.env && set +a
           echo "deb http://deb.debian.org/debian buster-backports main contrib non-free" >> /etc/apt/sources.list
           echo "deb-src http://deb.debian.org/debian buster-backports main contrib non-free" >> /etc/apt/sources.list
-          apt-get -qq update
-          apt-get install --yes --no-install-recommends --target-release buster-backports -qq libreoffice-calc-nogui libreoffice-draw-nogui libreoffice-impress-nogui libreoffice-math-nogui libreoffice-writer-nogui
-          apt-get install --yes --no-install-recommends -qq curl exiftool gcc ghostscript gnupg1 graphviz libfuse2 libjpeg-dev libmagic1 libpng-dev libtiff-dev make poppler-utils python3-venv python3-dev sane-utils tesseract-ocr tesseract-ocr-deu
+          sudo apt-get -qq update
+          sudo apt-get install --yes --no-install-recommends --target-release buster-backports -qq libreoffice-calc-nogui libreoffice-draw-nogui libreoffice-impress-nogui libreoffice-math-nogui libreoffice-writer-nogui
+          sudo apt-get install --yes --no-install-recommends -qq curl exiftool gcc ghostscript gnupg1 graphviz libfuse2 libjpeg-dev libmagic1 libpng-dev libtiff-dev make poppler-utils python3-venv python3-dev sane-utils tesseract-ocr tesseract-ocr-deu
           python3 -m venv venv
           . venv/bin/activate
           pip install pip==$PYTHON_PIP_VERSION
