@@ -41,7 +41,7 @@ link_document_preview = Link(
 link_document_review = Link(
     args='resolved_object.id', icon=icon_document_review,
     permissions=(permission_document_view,), text=_('Review'),
-    view='documents:document_properties'
+    view='documents:document_review'
 )
 link_document_properties = Link(
     args='resolved_object.id', icon=icon_document_properties,
