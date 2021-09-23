@@ -15,8 +15,8 @@ body {
     padding-top: 60px;
 }
 
-a {
-  color: #0b5a4b;
+.panel-footer {
+    background-color: #2d3e4f;
 }
 
 .navbar-brand {
