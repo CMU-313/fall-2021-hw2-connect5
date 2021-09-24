@@ -2,4 +2,4 @@ name: 'Mayan Test Action'
 description: 'Run the mayan test suite'
 runs:
   using: 'docker'
-  image: 'docker/test.Dockerfile'
+  image: 'test.Dockerfile'
