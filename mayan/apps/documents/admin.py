@@ -1,3 +1,8 @@
+from mayan.apps.documents.models.reviewer import Reviewer
+from mayan.apps.documents.models.reviewer_assignment import ReviewerAssignment
+from mayan.apps.documents.models.review import Review
+from mayan.apps.documents.models.metric import Metric
+from mayan.apps.documents.models.applicant import Applicant
 from django.contrib import admin
 
 from .models.document_models import Document
@@ -6,6 +11,13 @@ from .models.document_file_page_models import DocumentFilePage
 from .models.document_type_models import DocumentType, DocumentTypeFilename
 from .models.recently_accessed_document_models import RecentlyAccessedDocument
 from .models.trashed_document_models import TrashedDocument
+
+
+admin.site.register(Applicant)
+admin.site.register(Metric)
+admin.site.register(Review)
+admin.site.register(ReviewerAssignment)
+admin.site.register(Reviewer)
 
 
 class DocumentFilePageInline(admin.StackedInline):
