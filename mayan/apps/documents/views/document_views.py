@@ -147,6 +147,19 @@ class DocumentPreviewView(DocumentVersionPreviewView):
             'title': _('Preview of document: %s') % self.object,
         }
 
+from ..models.document_type_models import DocumentType
+class ReviewSetupView(SingleObjectListView):
+    model = DocumentType
+    def get_extra_context(self):
+        return {
+            'hide_link': True,
+            'hide_object': True,
+            'no_results_text': _(
+                'Define a review criterion for each axis of assessment'
+            ),
+            'no_results_title': _('No review criteria available'),
+            'title': _('Review Setup'),
+        }
 
 class DocumentPropertiesEditView(SingleObjectEditView):
     form_class = DocumentForm

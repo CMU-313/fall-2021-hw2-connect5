@@ -73,7 +73,7 @@ from .views.document_version_views import (
 )
 from .views.document_views import (
     DocumentTypeChangeView, DocumentListView, DocumentPreviewView,
-    DocumentPropertiesEditView, DocumentPropertiesView
+    DocumentPropertiesEditView, DocumentPropertiesView, ReviewSetupView
 )
 from .views.favorite_document_views import (
     FavoriteAddView, FavoriteDocumentListView, FavoriteRemoveView
@@ -506,6 +506,13 @@ urlpatterns_trashed_documents = [
     ),
 ]
 
+urlpatterns_review = [
+    url(
+        regex=r'^review/setup/$', name='document_review_setup',
+        view=ReviewSetupView.as_view()
+    ),
+]
+
 urlpatterns = []
 urlpatterns.extend(urlpatterns_document_files)
 urlpatterns.extend(urlpatterns_document_file_pages)
@@ -515,6 +522,7 @@ urlpatterns.extend(urlpatterns_document_version)
 urlpatterns.extend(urlpatterns_documents)
 urlpatterns.extend(urlpatterns_favorite_documents)
 urlpatterns.extend(urlpatterns_trashed_documents)
+urlpatterns.extend(urlpatterns_review)
 
 api_urls_documents = [
     url(
