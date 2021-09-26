@@ -147,18 +147,36 @@ class DocumentPreviewView(DocumentVersionPreviewView):
             'title': _('Preview of document: %s') % self.object,
         }
 
-from ..models.document_type_models import DocumentType
+from django.template import RequestContext
+from ..models.metric import Metric
+from ..links.document_links import link_review_metric_create
 class ReviewSetupView(SingleObjectListView):
-    model = DocumentType
+    model = Metric
     def get_extra_context(self):
         return {
-            'hide_link': True,
-            'hide_object': True,
-            'no_results_text': _(
-                'Define a review criterion for each axis of assessment'
+            'hide_link': False,
+            'hide_object': False,
+            'no_results_main_link': link_review_metric_create.resolve(
+                context=RequestContext(request=self.request)
             ),
-            'no_results_title': _('No review criteria available'),
+            'no_results_text': _(
+                'Define a review metric for each axis of assessment'
+            ),
+            'no_results_title': _('No review metrics available'),
             'title': _('Review Setup'),
+        }
+
+from django.urls import reverse_lazy
+from mayan.apps.views.generics import SingleObjectCreateView
+class ReviewMetricCreateView(SingleObjectCreateView):
+    fields = ('metric_name',)
+    model = Metric
+    post_action_redirect = reverse_lazy(
+        viewname='documents:document_review_setup'
+    )
+    def get_extra_context(self):
+        return {
+            'title': _('Create review metrics'),
         }
 
 class DocumentPropertiesEditView(SingleObjectEditView):

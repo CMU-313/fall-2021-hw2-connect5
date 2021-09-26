@@ -73,7 +73,7 @@ from .views.document_version_views import (
 )
 from .views.document_views import (
     DocumentTypeChangeView, DocumentListView, DocumentPreviewView,
-    DocumentPropertiesEditView, DocumentPropertiesView, ReviewSetupView
+    DocumentPropertiesEditView, DocumentPropertiesView, ReviewSetupView, ReviewMetricCreateView
 )
 from .views.favorite_document_views import (
     FavoriteAddView, FavoriteDocumentListView, FavoriteRemoveView
@@ -510,6 +510,10 @@ urlpatterns_review = [
     url(
         regex=r'^review/setup/$', name='document_review_setup',
         view=ReviewSetupView.as_view()
+    ),
+    url(
+        regex=r'^review/setup/create/$', name='document_review_metric_create',
+        view=ReviewMetricCreateView.as_view()
     ),
 ]
 

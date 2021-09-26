@@ -50,5 +50,8 @@ link_document_properties_edit = Link(
     text=_('Edit properties'), view='documents:document_properties_edit'
 )
 link_review_opts_setup = Link(icon=icon_document_type_setup, 
-    text=_('Review options'), view='documents:document_review_setup'
+    text=_('Review metrics'), view='documents:document_review_setup'
+)
+link_review_metric_create = Link(icon=icon_document_type_setup, 
+    text=_('Create review metrics'), view='documents:document_review_metric_create'
 )
