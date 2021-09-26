@@ -1,4 +1,3 @@
-from mayan.apps.documents.models.document_file_models import DocumentFile
 from django.db import models
 
 class Metric(models.Model):

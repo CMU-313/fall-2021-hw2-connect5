@@ -1,6 +1,7 @@
 import logging
 
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _, ungettext
 
@@ -12,6 +13,7 @@ from mayan.apps.views.generics import (
 
 from ..events import event_document_viewed
 from ..forms.document_forms import DocumentForm, DocumentPropertiesForm
+from ..forms.review_forms import ReviewForm
 from ..forms.document_type_forms import DocumentTypeFilteredSelectForm
 from ..icons import icon_document_list
 from ..models.document_models import Document
@@ -178,10 +180,14 @@ class DocumentPropertiesEditView(SingleObjectEditView):
         )
 
 class DocumentReviewView(SingleObjectEditView):
-    form_class = DocumentForm
+    form_class = ReviewForm
     object_permission = permission_document_view
     pk_url_kwarg = 'document_id'
     source_queryset = Document.valid
+
+    def form_valid(self, form):
+        form.save(self.object)
+        return HttpResponseRedirect(redirect_to=self.get_success_url())
 
     def dispatch(self, request, *args, **kwargs):
         result = super().dispatch(request, *args, **kwargs)
@@ -191,7 +197,7 @@ class DocumentReviewView(SingleObjectEditView):
     def get_extra_context(self):
         return {
             'object': self.object,
-            'title': _('Edit properties of document: %s') % self.object,
+            'title': _('Edit review of document: %s') % self.object,
         }
 
     def get_instance_extra_data(self):
@@ -201,7 +207,7 @@ class DocumentReviewView(SingleObjectEditView):
 
     def get_post_action_redirect(self):
         return reverse(
-            viewname='documents:document_properties', kwargs={
+            viewname='documents:document_preview', kwargs={
                 'document_id': self.object.pk
             }
         )
