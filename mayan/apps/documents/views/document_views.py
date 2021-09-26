@@ -177,6 +177,35 @@ class DocumentPropertiesEditView(SingleObjectEditView):
             }
         )
 
+class DocumentReviewView(SingleObjectEditView):
+    form_class = DocumentForm
+    object_permission = permission_document_view
+    pk_url_kwarg = 'document_id'
+    source_queryset = Document.valid
+
+    def dispatch(self, request, *args, **kwargs):
+        result = super().dispatch(request, *args, **kwargs)
+        self.object.add_as_recent_document_for_user(user=request.user)
+        return result
+
+    def get_extra_context(self):
+        return {
+            'object': self.object,
+            'title': _('Edit properties of document: %s') % self.object,
+        }
+
+    def get_instance_extra_data(self):
+        return {
+            '_event_actor': self.request.user
+        }
+
+    def get_post_action_redirect(self):
+        return reverse(
+            viewname='documents:document_properties', kwargs={
+                'document_id': self.object.pk
+            }
+        )
+
 
 class DocumentPropertiesView(SingleObjectDetailView):
     form_class = DocumentPropertiesForm

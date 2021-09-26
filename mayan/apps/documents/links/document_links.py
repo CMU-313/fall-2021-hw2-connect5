@@ -4,7 +4,7 @@ from mayan.apps.navigation.classes import Link
 
 from ..icons import (
     icon_document_edit, icon_document_recently_accessed_list, icon_document_list,
-    icon_document_preview, icon_document_properties,
+    icon_document_preview, icon_document_review, icon_document_properties,
     icon_document_type_change, icon_document_recently_created_list
 )
 from ..permissions import (
@@ -37,6 +37,11 @@ link_document_preview = Link(
     args='resolved_object.id', icon=icon_document_preview,
     permissions=(permission_document_view,), text=_('Preview'),
     view='documents:document_preview'
+)
+link_document_review = Link(
+    args='resolved_object.id', icon=icon_document_review,
+    permissions=(permission_document_view,), text=_('Review'),
+    view='documents:document_review'
 )
 link_document_properties = Link(
     args='resolved_object.id', icon=icon_document_properties,
