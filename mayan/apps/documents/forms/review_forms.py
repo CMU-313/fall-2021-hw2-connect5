@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from ..models.reviewer import Reviewer
 from ..models.applicant import Applicant
 from ..models.review import Review
+from ..models.metric import Metric
 
 
 class ReviewForm(forms.Form):
@@ -17,7 +18,7 @@ class ReviewForm(forms.Form):
         # Dynamically create the fields
         metrics = self.get_metrics()
         for metric in metrics:
-            self.fields[metric] = forms.ChoiceField(choices=[(x, x) for x in range(1, 6)])
+            self.fields[metric] = getattr(forms, metrics[metric])()
 
     def save(self, document):
         reviewer, _ = Reviewer.objects.get_or_create(
@@ -42,7 +43,6 @@ class ReviewForm(forms.Form):
         )
 
     def get_metrics(self):
-        # The raw metrics string will come from DB
-        metrics = 'School Rating, GPA Rating, Research Rating, Work Rating, Project Rating, Award Rating'
-        metrics = metrics.split(',')
-        return map(lambda x: x.strip(), metrics)
+        metric_objects = Metric.objects.all()
+        metrics = {x['metric_name'] : x['metric_type'] for x in metric_objects}
+        return metrics
