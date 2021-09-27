@@ -73,6 +73,14 @@ at: https://docs.mayan-edms.com/parts/installation.html
 - 2 Gigabytes of RAM (1 Gigabyte if OCR is turned off).
 - Multiple core CPU (64 bit, faster than 1 GHz recommended).
 
+<h2 align="center">Review Page</h2>
+
+This section includes details about the new review page. To access it, open any document by clicking the document name
+within any of the various document selection pages (recently accessed, all documents, etc.).
+Then click the review button that can be found on the right-hand side of your screen. You should then be greeted
+by a screen where you can select ratings for each applicant in a number of categories (determined by an administrator).
+Then hit the submit button to submit your review!
+
 <h2 align="center">Important links</h2>
 
 
