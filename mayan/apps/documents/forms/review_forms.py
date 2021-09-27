@@ -44,5 +44,5 @@ class ReviewForm(forms.Form):
 
     def get_metrics(self):
         metric_objects = Metric.objects.all()
-        metrics = [x['metric_name'] for x in metric_objects]
+        metrics = [x.metric_name for x in metric_objects]
         return metrics
