@@ -1,5 +1,6 @@
 from mayan.apps.documents.models.applicant import Applicant
 from mayan.apps.documents.models.reviewer import Reviewer
+
 from django.db import models
 
 class ReviewerAssignment(models.Model):
