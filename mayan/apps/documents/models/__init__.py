@@ -7,8 +7,8 @@ from .document_type_models import *  # NOQA
 from .favorite_document_models import *  # NOQA
 from .recently_accessed_document_models import *  # NOQA
 from .trashed_document_models import *  # NOQA
-from .applicant import * # NOQA
-from .metric import * #NOQA
-from .review import * #NOQA
-from .reviewer_assignment import * #NOQA
-from .reviewer import * #NOQA
+from .applicant import *  # NOQA
+from .metric import *  # NOQA
+from .review import *  # NOQA
+from .reviewer_assignment import *  # NOQA
+from .reviewer import *  # NOQA

@@ -21,6 +21,9 @@ permission_document_tools = namespace.add_permission(
 permission_document_view = namespace.add_permission(
     label=_('View documents'), name='document_view'
 )
+permission_document_review = namespace.add_permission(
+    label=_('Review documents'), name='document_review'
+)
 
 # Document file
 
@@ -105,4 +108,9 @@ permission_document_trash = namespace.add_permission(
 )
 permission_trash_empty = namespace.add_permission(
     label=_('Empty trash'), name='document_empty_trash'
+)
+
+# Admission metric
+permission_metric_create = namespace.add_permission(
+    label=_('Create metrics'), name='metric_create'
 )
