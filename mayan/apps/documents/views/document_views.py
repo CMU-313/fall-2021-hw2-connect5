@@ -18,7 +18,8 @@ from ..forms.document_type_forms import DocumentTypeFilteredSelectForm
 from ..icons import icon_document_list
 from ..models.document_models import Document
 from ..permissions import (
-    permission_document_properties_edit, permission_document_view
+    permission_document_properties_edit, permission_document_view,
+    permission_document_review
 )
 
 from .document_version_views import DocumentVersionPreviewView
@@ -181,12 +182,12 @@ class DocumentPropertiesEditView(SingleObjectEditView):
 
 class DocumentReviewView(SingleObjectEditView):
     form_class = ReviewForm
-    object_permission = permission_document_view
+    object_permission = permission_document_review
     pk_url_kwarg = 'document_id'
     source_queryset = Document.valid
 
     def form_valid(self, form):
-        form.save(self.object)
+        form.save(self.request.user, self.object)
         return HttpResponseRedirect(redirect_to=self.get_success_url())
 
     def dispatch(self, request, *args, **kwargs):

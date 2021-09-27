@@ -88,6 +88,7 @@ from .views.trashed_document_views import (
     DocumentTrashView, EmptyTrashCanView, TrashedDocumentDeleteView,
     TrashedDocumentListView, TrashedDocumentRestoreView
 )
+from .views.metric_views import MetricCreateView
 
 urlpatterns_document_files = [
     url(
@@ -510,6 +511,13 @@ urlpatterns_trashed_documents = [
     ),
 ]
 
+urlpatterns_metrics = [
+    url(
+        regex=r'^metric/$',
+        name='document_metric', view=MetricCreateView.as_view()
+    ),
+]
+
 urlpatterns = []
 urlpatterns.extend(urlpatterns_document_files)
 urlpatterns.extend(urlpatterns_document_file_pages)
@@ -519,6 +527,7 @@ urlpatterns.extend(urlpatterns_document_version)
 urlpatterns.extend(urlpatterns_documents)
 urlpatterns.extend(urlpatterns_favorite_documents)
 urlpatterns.extend(urlpatterns_trashed_documents)
+urlpatterns.extend(urlpatterns_metrics)
 
 api_urls_documents = [
     url(
