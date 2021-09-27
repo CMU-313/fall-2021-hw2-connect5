@@ -18,7 +18,7 @@ class ReviewForm(forms.Form):
         # Dynamically create the fields
         metrics = self.get_metrics()
         for metric in metrics:
-            self.fields[metric] = getattr(forms, metrics[metric])()
+            self.fields[metric] = forms.ChoiceField(choices=[(x, x) for x in range(1, 6)])
 
     def save(self, document):
         reviewer, _ = Reviewer.objects.get_or_create(
@@ -44,5 +44,5 @@ class ReviewForm(forms.Form):
 
     def get_metrics(self):
         metric_objects = Metric.objects.all()
-        metrics = {x['metric_name'] : x['metric_type'] for x in metric_objects}
+        metrics = [x['metric_name'] for x in metric_objects]
         return metrics
