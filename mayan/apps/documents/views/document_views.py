@@ -1,6 +1,7 @@
 import logging
 
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _, ungettext
 
@@ -12,11 +13,13 @@ from mayan.apps.views.generics import (
 
 from ..events import event_document_viewed
 from ..forms.document_forms import DocumentForm, DocumentPropertiesForm
+from ..forms.review_forms import ReviewForm
 from ..forms.document_type_forms import DocumentTypeFilteredSelectForm
 from ..icons import icon_document_list
 from ..models.document_models import Document
 from ..permissions import (
-    permission_document_properties_edit, permission_document_view
+    permission_document_properties_edit, permission_document_view,
+    permission_document_review
 )
 
 from .document_version_views import DocumentVersionPreviewView
@@ -173,6 +176,39 @@ class DocumentPropertiesEditView(SingleObjectEditView):
     def get_post_action_redirect(self):
         return reverse(
             viewname='documents:document_properties', kwargs={
+                'document_id': self.object.pk
+            }
+        )
+
+class DocumentReviewView(SingleObjectEditView):
+    form_class = ReviewForm
+    object_permission = permission_document_review
+    pk_url_kwarg = 'document_id'
+    source_queryset = Document.valid
+
+    def form_valid(self, form):
+        form.save(self.request.user, self.object)
+        return HttpResponseRedirect(redirect_to=self.get_success_url())
+
+    def dispatch(self, request, *args, **kwargs):
+        result = super().dispatch(request, *args, **kwargs)
+        self.object.add_as_recent_document_for_user(user=request.user)
+        return result
+
+    def get_extra_context(self):
+        return {
+            'object': self.object,
+            'title': _('Edit review of document: %s') % self.object,
+        }
+
+    def get_instance_extra_data(self):
+        return {
+            '_event_actor': self.request.user
+        }
+
+    def get_post_action_redirect(self):
+        return reverse(
+            viewname='documents:document_preview', kwargs={
                 'document_id': self.object.pk
             }
         )

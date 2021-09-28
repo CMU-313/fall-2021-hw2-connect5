@@ -32,6 +32,7 @@ icon_document_file_page_count_update = Icon(
     driver_name='fontawesome', symbol='copy'
 )
 icon_document_preview = Icon(driver_name='fontawesome', symbol='eye')
+icon_document_review = Icon(driver_name='fontawesome', symbol='sticky-note')
 icon_document_properties = Icon(driver_name='fontawesome', symbol='info')
 icon_document_trash_send = Icon(
     driver_name='fontawesome', symbol='trash-alt'
