@@ -54,3 +54,9 @@ link_document_properties_edit = Link(
     permissions=(permission_document_properties_edit,),
     text=_('Edit properties'), view='documents:document_properties_edit'
 )
+link_document_metric_list = Link(icon=icon_document_review, 
+    text=_('Set review metrics'), view='documents:document_metric_list'
+)
+link_document_metric_create = Link(icon=icon_document_review, 
+    text=_('Create review metric'), view='documents:document_metric'
+)
