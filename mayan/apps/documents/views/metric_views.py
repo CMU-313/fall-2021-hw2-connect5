@@ -34,17 +34,17 @@ class MetricCreateView(SingleObjectCreateView):
 class MetricListView(SingleObjectListView):
     model = Metric
 
-    def get_context_data(self, **kwargs):
+    '''def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         toName = lambda x : x.metric_name
         ctx["name"] = map(toName, Metric.objects.all())
-        return ctx
+        return ctx'''
 
     def get_extra_context(self):
         return {
-            ''''hide_link': True,
+            'hide_link': True,
             'hide_object': False,
-            'list_as_items': False,'''
+            'list_as_items': False,
             'no_results_main_link': link_document_metric_create.resolve(
                 context=RequestContext(request=self.request)
             ),
