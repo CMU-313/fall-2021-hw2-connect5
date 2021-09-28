@@ -33,6 +33,7 @@ class MetricCreateView(SingleObjectCreateView):
 
 class MetricListView(SingleObjectListView):
     model = Metric
+    object_permission = permission_metric_create
 
     '''def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
