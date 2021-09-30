@@ -9,7 +9,6 @@ from ..models.metric import Metric
 
 
 class ReviewForm(forms.Form):
-    applicant = forms.CharField(label='Applicant Name', max_length=30)
 
     def __init__(self, *args, **kwargs):
         self.instance = kwargs.pop('instance')
@@ -26,10 +25,19 @@ class ReviewForm(forms.Form):
             name=reviewer_name
         )
 
-        applicant, _ = Applicant.objects.get_or_create(
-            name=self.cleaned_data['applicant'],
-            document=document
-        )
+        try:
+            applicant = Applicant.objects.get(document=document)
+        except (Applicant.DoesNotExist, Applicant.MultipleObjectsReturned):
+            max_name = Applicant._meta.get_field('name').max_length
+            try:
+                name = document.label[:document.label.index('.')]
+            except ValueError:
+                name = document.label
+            
+            applicant, _ = Applicant.objects.get_or_create(
+                name=name[:max_name],
+                document=document
+            )
 
         del self.cleaned_data['applicant']
         review = Review.objects.create(
