@@ -100,4 +100,4 @@ go to the Django admin site.
 - [Plug-ins, other related projects](https://gitlab.com/mayan-edms/)
 - [Translations](https://www.transifex.com/rosarior/mayan-edms/)
 - [Videos](https://www.youtube.com/channel/UCJOOXHP1MJ9lVA7d8ZTlHPw)
-
+- [Testing](TESTING.md)
