@@ -81,6 +81,14 @@ Then click the review button that can be found on the right-hand side of your sc
 by a screen where you can select ratings for each applicant in a number of categories (determined by an administrator).
 Then hit the submit button to submit your review!
 
+<h2 align="center">Review Administration Page</h2>
+
+This section includes details about the administration page for reviews. To access it, go to 
+"System" in the upper-right corner of any Mayan page and select "Settings." On the Settings page, 
+select "Set review metrics" to go to a page that allows you to see how many metrics you've currently set. If there are none, it will provide the option to create the metrics, which can be
+done by inputting comma-separated metric names into the creation form's text box. To delete metrics,
+go to the Django admin site.
+
 <h2 align="center">Important links</h2>
 
 

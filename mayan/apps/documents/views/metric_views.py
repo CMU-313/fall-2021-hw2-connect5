@@ -1,10 +1,13 @@
 from django.http import HttpResponseRedirect
+from django.template import RequestContext
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
-from mayan.apps.views.generics import SingleObjectCreateView
+from mayan.apps.views.generics import SingleObjectCreateView, SingleObjectListView
 
 from ..forms.metric_forms import MetricForm
+from ..models.metric import Metric
+from ..links.document_links import link_document_metric_create;
 from ..permissions import permission_metric_create
 
 class MetricCreateView(SingleObjectCreateView):
@@ -26,4 +29,23 @@ class MetricCreateView(SingleObjectCreateView):
         }
 
     def get_post_action_redirect(self):
-        return reverse(viewname='common:home')
+        return reverse(viewname='documents:document_metric_list')
+
+class MetricListView(SingleObjectListView):
+    model = Metric
+    object_permission = permission_metric_create
+
+    def get_extra_context(self):
+        return {
+            'hide_link': True,
+            'hide_object': False,
+            'list_as_items': False,
+            'no_results_main_link': link_document_metric_create.resolve(
+                context=RequestContext(request=self.request)
+            ),
+            'no_results_text': _(
+                'Define a review metric for each axis of assessment'
+            ),
+            'no_results_title': _('No review metrics available'),
+            'title': _('Review Setup'),
+        }
