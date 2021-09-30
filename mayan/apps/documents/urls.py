@@ -88,7 +88,7 @@ from .views.trashed_document_views import (
     DocumentTrashView, EmptyTrashCanView, TrashedDocumentDeleteView,
     TrashedDocumentListView, TrashedDocumentRestoreView
 )
-from .views.metric_views import MetricCreateView
+from .views.metric_views import MetricCreateView, MetricListView
 
 urlpatterns_document_files = [
     url(
@@ -515,6 +515,10 @@ urlpatterns_metrics = [
     url(
         regex=r'^metric/$',
         name='document_metric', view=MetricCreateView.as_view()
+    ),
+    url(
+        regex=r'^metriclist/$',
+        name='document_metric_list', view=MetricListView.as_view()
     ),
 ]
 
