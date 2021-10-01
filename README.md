@@ -89,6 +89,10 @@ select "Set review metrics" to go to a page that allows you to see how many metr
 done by inputting comma-separated metric names into the creation form's text box. To delete metrics,
 go to the Django admin site.
 
+<h2 align="center">Testing Review and Review Administration Pages</h2>
+
+Testing can be accomplished by following the manual testing directions in TESTING.md.
+
 <h2 align="center">Important links</h2>
 
 
